@@ -98,15 +98,15 @@ json.map(i => i.firstName)
 ```
 returns the array: ["John", "Susan", "David"]
 
-**.reduce()** automatically loops through each element of an array, and carries out a **cumulative** calculation which you define. 
+**.reduce()** automatically loops through each element of an array, and carries out a **cumulative** calculation which you define.  
 The following code uses reduce to create a simple **sum** of the values in the array (ie. 20): 
 ```js
 array = [1,1,2,3,5,8]
 array.reduce((acc, i) => acc + i, 0);
 // array.reduce(function (acc, i) { return acc + i}, 0);
 ```
-*i* represents the current element. 
-*acc* represents an accumulator. Its keeps a running total, and its final value will be your result.
+*i* represents the current element.  
+*acc* represents an accumulator. Its keeps a running total, and its final value will be your result.  
 The *0* argument is the initial value we want the accumulator to start with.
 
 The calculation you specify can include other values or conditions, to allow you to return things like the min/max/average value:
