@@ -1,5 +1,6 @@
 # DC & Crossfilter
-
+Nb. The dc.js code below is based on version 2. It is only compatible with d3.js (v3).  
+A newer version of dc.js (v4) is available that is only compatible with d3.js (v4+5).
 
 ## Crossfilter
 
