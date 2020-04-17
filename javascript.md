@@ -53,7 +53,6 @@ json.forEach(i => {i.fullname = i.firstName + " " + i.lastName});
 ```
 
 
-
 # JQuery
 JQuery is a javascript library that makes it easier to change a HTML document. The main way of selecting a tag/id/class.. with JQuery is to use the **$** function with the relevant CSS selector - for example the code below would select all HTML tags whose id="mapid" :
 ```html
@@ -75,6 +74,50 @@ $("#mapid").css("color", "red")
 ```
 
 Nb. JQuery is simpler way of selecting elements compared to using raw javascript such as *document.getElementById(id)* 
+
+# Map & Reduce
+.map() .reduce() and .filter() are functions that can be used on **arrays**.
+
+**.map()** automatically loops through each element of an array and returns a value. 
+```js
+array = [1,1,2,3,5,8]
+array.map(i => i)
+// array.map(function (i) { return i });
+```
+
+You can also add other calculations/functions during this process: 
+```js
+array.map(i => i + "A")
+// array.map(function (i) { return i + "A" });
+```
+returns the array: ["1A", "1A", "2A", "3A", "5A", "8A"]
+
+If you have an **array of objects** then you can use the objects keys to extract their values **as an array**:
+```js
+json.map(i => i.firstName)
+```
+returns the array: ["John", "Susan", "David"]
+
+**.reduce()** automatically loops through each element of an array, and carries out a **cumulative** calculation which you define. 
+The following code uses reduce to create a simple **sum** of the values in the array (ie. 20): 
+```js
+array = [1,1,2,3,5,8]
+array.reduce((acc, i) => acc + i, 0);
+// array.reduce(function (acc, i) { return acc + i}, 0);
+```
+*i* represents the current element. 
+*acc* represents an accumulator. Its keeps a running total, and its final value will be your result.
+The *0* argument is the initial value we want the accumulator to start with.
+
+The calculation you specify can include other values or conditions, to allow you to return things like the min/max/average value:
+```js
+array.reduce((acc, i) => (acc + i) / array.length, 0);  // The average value
+array.reduce((acc, i) => i > acc ? i : acc, array[0]);  // The maximum value (the initial value is the first element in the array)
+array.reduce((acc, i) => i < acc ? i : acc, array[0]);  // The minimum value
+```
+
+
+
 
 
 ## A Datatable in JS
