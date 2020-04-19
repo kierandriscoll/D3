@@ -30,7 +30,20 @@ If you want to link an action (eg clicking a button) to your function:
 myFunction = () => { alert( "The button has been clicked." ); }
 ```
 
-
+# Conditions / IF-ELSE / IF-THEN-DO
+if() conditions can be written as:
+```js
+var conditional = if(year == 2015) {
+  "Equal";
+} else {
+  "Not Equal";
+}
+```
+Alternatively there is a shorthand way of writing this:   
+**(condition) ? value if TRUE : value if FALSE**
+```js
+var conditional = (year == 2015) ? "Equal" : "Not Equal";
+```
 
 # JSON Arrays
 A JSON array is an **array of objects** and is used by various visualisation libraries. If you import tabular data into javascript it will normally need to be in this format:  
@@ -75,8 +88,8 @@ $("#mapid").css("color", "red")
 
 Nb. JQuery is simpler way of selecting elements compared to using raw javascript such as *document.getElementById(id)* 
 
-# Map & Reduce
-.map() .reduce() and .filter() are functions that can be used on **arrays**.
+# Map & Reduce & Sort
+.map() .reduce() .sort() and .filter() are functions that can be used on **arrays**. You need to insert a function into them to specify how to process any output. 
 
 **.map()** automatically loops through each element of an array and returns a value. 
 ```js
@@ -115,6 +128,38 @@ array.reduce((acc, i) => (acc + i) / array.length, 0);  // The average value
 array.reduce((acc, i) => i > acc ? i : acc, array[0]);  // The maximum value (the initial value is the first element in the array)
 array.reduce((acc, i) => i < acc ? i : acc, array[0]);  // The minimum value
 ```
+
+**.sort()** sorts an array.
+If you are sorting **numeric values** you need to specify a function for how they will be ordered.
+Nb. sort() works by iteratively comparing pairs of values (a,b) and moving them depending on the whether the differenc is +/-:
+```js
+array = [10,1,25,3,95,80]
+array.sort((a, b) => a - b)  // ascending order - for descending revesre the calculation: (a, b) => b - a  
+// array.sort(function(a, b) {return a-b});  
+```
+
+If you are sorting **character values**, then a function is not needed. It will be alphabetical by default (you can then use .reverse() for descending order). 
+```js
+array = ["bike","dog","brick","cat","ant","zzz"]
+array.sort();  
+```
+Nb. If you need to customise character sorting, the basic function is: (a, b) => a > b ? 1 : -1).
+
+
+If you have an **array of objects** then add the key that you want to compare:
+```js
+var json_gp = [{id: 1, amount:123, date:"01/04/2020"}, {id: 1, amount:250, date:"15/04/2020"}, {id: 2, amount:30, date:"08/04/2020"}, {id: 3, amount:188, date:"02/04/2020"}, {id: 3, amount:99, date:"12/04/2020"}];     
+
+array.sort((a, b) => a.amount - b.amount);  
+```
+To sort by more than one value (eg. id & amount) combine comparisons with the OR operator:
+```js
+json_gp.sort((a, b) => a.id - b.id || a.amount - b.amount);  
+```
+
+
+
+# Grouping 
 
 
 
