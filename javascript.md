@@ -176,7 +176,7 @@ var json_output = [
 {id: 2, max_amount:30"},
 {id: 3, max_amount:188}];
 ```
-There are no pre-built functions for this, but you can combine sort/filter/map/reduce() to create your own.
+There are no pre-built functions for this, but you can combine sort/filter/map/reduce() to create your own.  
 Select the rows with the highest/lowest values:
 ```js
 var slice_by = function(array, key) {
@@ -190,7 +190,7 @@ var slice_by = function(array, key) {
   return(output);
 }
 ```
-Usage - The function above only returns the first row of each group, so you need to sort it so that the highest/lowest value is at the top: 
+Usage - The function above only returns the top row for each group, so the data needs to be sorted first so that the highest/lowest value is at the top: 
 ```js
 json_input.sort((a, b) => a.id - b.id || b.amount - a.amount);  // amount sorted in descending order 
 json_output = slice_by(json_input, "id")
