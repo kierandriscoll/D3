@@ -152,6 +152,8 @@ var json_gp = [{id: 1, amount:123, date:"01/04/2020"}, {id: 1, amount:250, date:
 
 array.sort((a, b) => a.amount - b.amount);  
 ```
+Nb. Dates will need to be converted into numeric format or 'YYYY-MM-DD' to sort properly.
+
 To sort by more than one value (eg. id & amount) combine comparisons with the OR operator:
 ```js
 json_gp.sort((a, b) => a.id - b.id || a.amount - b.amount);  
@@ -159,11 +161,40 @@ json_gp.sort((a, b) => a.id - b.id || a.amount - b.amount);
 
 
 
-# Grouping 
+## Grouping 
+If you have an **array of objects** and you want something like counts/max/min but **grouped by a category**:
+```js
+var json_input = [
+{id: 1, amount:123, date:"01/04/2020"},
+{id: 1, amount:250, date:"15/04/2020"},
+{id: 2, amount:30, date:"08/04/2020"},
+{id: 3, amount:188, date:"02/04/2020"},
+{id: 3, amount:99, date:"12/04/2020"}];
 
-
-
-
+var json_output = [
+{id: 1, max_amount:250},
+{id: 2, max_amount:30"},
+{id: 3, max_amount:188}];
+```
+There are no pre-built functions for this, but you can combine sort/filter/map/reduce() to create your own.
+Select the rows with the highest/lowest values:
+```js
+var slice_by = function(array, key) {
+  by_groups = [...new Set(array.map(e => e[key]))];  // Creates an array of distinct key values
+  output = [];  // Initialse empty output 
+  
+  by_groups.forEach((group) => {
+    first_row = array.filter(e => e[key] == group).slice(0,1);  // Filter by key value and take first row
+    output.push(first_row[0]);  // Add to the output array
+  })
+  return(output);
+}
+```
+Usage - The function above only returns the first row of each group, so you need to sort it so that the highest/lowest value is at the top: 
+```js
+json_input.sort((a, b) => a.id - b.id || b.amount - a.amount);  // amount sorted in descending order 
+json_output = slice_by(json_input, "id")
+```
 
 ## A Datatable in JS
 The **DataTables** library depends on JQuery so that it can be interactive (sortable/searchable/pagination..). 
