@@ -149,34 +149,34 @@ array.reduce((acc, i) => i < acc ? i : acc, array[0]);  // The minimum value
 **.sort()** sorts an array.
 If you are sorting **numeric values** you need to specify a function for how they will be ordered.
 Nb. sort() works by iteratively comparing pairs of values (a,b) and moving them depending on the whether the differenc is +/-:
+Nb. Dates will need to be converted in date format or 'YYYY-MM-DD' to sort properly.
 ```js
 array = [10,1,25,3,95,80]
 array.sort((a, b) => a - b)  // ascending order - for descending revesre the calculation: (a, b) => b - a  
 // array.sort(function(a, b) {return a-b});  
 ```
 
-If you are sorting **character values**, then a function is not needed. It will be alphabetical by default (you can then use .reverse() for descending order). 
+If you are only sorting by one **character value**, then a function is not needed. It will be alphabetical by default (you can then use .reverse() for descending order). 
 ```js
 array = ["bike","dog","brick","cat","ant","zzz"]
 array.sort();  
 ```
-Nb. If you need to customise character sorting, the basic function is: (a, b) => a > b ? 1 : -1).
-
 
 If you have an **array of objects** then add the key that you want to compare:
 ```js
-var json_gp = [{id: 1, amount:123, date:"01/04/2020"}, {id: 1, amount:250, date:"15/04/2020"}, {id: 2, amount:30, date:"08/04/2020"}, {id: 3, amount:188, date:"02/04/2020"}, {id: 3, amount:99, date:"12/04/2020"}];     
+var json_gp = [{id: 1, amount:123, colour:"red"}, {id: 1, amount:250, colour:"blue"}, {id: 2, amount:30, colour:"red"}, {id: 3, amount:188, colour:"yellow"}, {id: 3, amount:99, colour:"green"}];     
 
 array.sort((a, b) => a.amount - b.amount);  
 ```
-Nb. Dates will need to be converted into numeric format or 'YYYY-MM-DD' to sort properly.
 
 To sort by more than one value (eg. id & amount) combine comparisons with the OR operator:
 ```js
 json_gp.sort((a, b) => a.id - b.id || a.amount - b.amount);  
 ```
-
-
+If one of these is a **character value**  you need to use the character comparison: **a > b ? 1 : -1**  
+```js
+json_gp.sort((a, b) => a.id - b.id || a.name > b.name ? 1 : -1);  
+```
 
 ## Grouping 
 If you have an **array of objects** and you want something like counts/max/min but **grouped by a category**:
