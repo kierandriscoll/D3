@@ -88,6 +88,23 @@ $("#mapid").css("color", "red")
 
 Nb. JQuery is simpler way of selecting elements compared to using raw javascript such as *document.getElementById(id)* 
 
+# Dates
+Javascript can understand dates if they are in the format 'YYYY-MM-DD'.  
+If they are in a different format (eg. imported from a CSV as DD/MM/YYYY) then you may need to convert them to do calculations or sorting.  
+The easiest way to do this is to use moment.js to convert the string and .toDate() to store it as a standard javascript date
+```html
+<script src="lib/moment.min.2.18.1.js" type="text/javascript"></script> 
+```
+```js
+moment('18/04/2020', 'DD/MM/YYYY').toDate();
+```
+To do this on an array of objects:  
+```js
+array.forEach(function(d) {
+    d.properDate = moment(d.stringDate, 'DD/MM/YYYY').toDate();
+ });   
+```
+
 # Map & Reduce & Sort
 .map() .reduce() .sort() and .filter() are functions that can be used on **arrays**. You need to insert a function into them to specify how to process any output. 
 
