@@ -213,6 +213,27 @@ json_input.sort((a, b) => a.id - b.id || b.amount - a.amount);  // amount sorted
 json_output = slice_by(json_input, "id")
 ```
 
+
+## Javascript Libraries
+Libraries are loaded in the HTML head:
+```html
+<head>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" type="text/javascript"></script>
+</head>	
+```
+
+However it is possible to add them using javascript (eg. if you are developing in the console): 
+```js
+function addLibrary(path) { 
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src = path;
+  document.head.appendChild(script);
+}
+```
+
+
+
 ## A Datatable in JS
 The **DataTables** library depends on JQuery so that it can be interactive (sortable/searchable/pagination..). 
 
@@ -281,3 +302,4 @@ var layout = {title: 'Category Distribution',
 Plotly.newPlot('plotly_bar_id', setup, layout, {displayModeBar: false});
 </script>
 ```
+
