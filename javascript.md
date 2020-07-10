@@ -45,6 +45,36 @@ Alternatively there is a shorthand way of writing this:
 var conditional = (year == 2015) ? "Equal" : "Not Equal";
 ```
 
+## Javascript Libraries
+Libraries are available that will add/extend javascript functionality. They are usually loaded in the HTML head:
+```html
+<head>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" type="text/javascript"></script>
+</head>	
+```
+However it is possible to add them using javascript (eg. if you are developing in the console): 
+```js
+function addLibrary(path) { 
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src = path;
+  document.head.appendChild(script);
+}
+```
+
+## Getting data in 
+The easiest way to imports a delimited file (eg. CSV) is to load the d3.js library and use **d3.csv()**.  
+This function reads and converts CSV into **JSON**
+```js
+d3.csv("dataset.csv", d3.autoType)
+  .then(function(data){
+  // other code to apply to data
+  });
+```
+
+If you need to import an Excel file then the best option is to to load the xlsx.js library   
+
+
 # JSON Arrays
 A JSON array is an **array of objects** and is used by various visualisation libraries. If you import tabular data into javascript it will normally need to be in this format:  
 ```js
@@ -214,23 +244,7 @@ json_output = slice_by(json_input, "id")
 ```
 
 
-## Javascript Libraries
-Libraries are loaded in the HTML head:
-```html
-<head>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" type="text/javascript"></script>
-</head>	
-```
 
-However it is possible to add them using javascript (eg. if you are developing in the console): 
-```js
-function addLibrary(path) { 
-  var script = document.createElement('script');
-  script.type = 'text/javascript';
-  script.src = path;
-  document.head.appendChild(script);
-}
-```
 
 
 
