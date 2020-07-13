@@ -12,7 +12,7 @@ An **object** can created using { }, and are made of key:value pairs. Values can
 var people = {firstName:"John", lastName:"Doe"};     
 ```
 
-# Functions
+# User Defined Functions
 Functions are defined as shown below:
 ```js
 function myFunction() { alert( cars[1] ); }
@@ -138,6 +138,7 @@ array.forEach(function(d) {
 # Map & Reduce & Sort
 .map() .reduce() .sort() and .filter() are functions that can be used on **arrays**. You need to insert a function into them to specify how to process any output. 
 
+## Map
 **.map()** automatically loops through each element of an array and returns a value. 
 ```js
 array = [1,1,2,3,5,8]
@@ -145,19 +146,29 @@ array.map(i => i)
 // array.map(function (i) { return i });
 ```
 
-You can also add other calculations/functions during this process: 
+You can add other calculations during this process: 
 ```js
 array.map(i => i + "A")
 // array.map(function (i) { return i + "A" });
 ```
 returns the array: ["1A", "1A", "2A", "3A", "5A", "8A"]
 
+You can also apply other functions during this process: 
+```js
+array = ["hoRriBle "," tEXt"," sTRinGs "]
+array.map(i => i.trim().toLowerCase())
+```
+returns the array: ["horrible","text","strings"]
+
 If you have an **array of objects** then you can use the objects keys to extract their values **as an array**:
 ```js
+var json = [{firstName:"John", lastName:"Doe"}, {firstName:"Susan", lastName:"Smith"}, {firstName:"David", lastName:"Jones"}];  
+
 json.map(i => i.firstName)
 ```
 returns the array: ["John", "Susan", "David"]
 
+## Reduce
 **.reduce()** automatically loops through each element of an array, and carries out a **cumulative** calculation which you define.  
 The following code uses reduce to create a simple **sum** of the values in the array (ie. 20): 
 ```js
@@ -176,6 +187,7 @@ array.reduce((acc, i) => i > acc ? i : acc, array[0]);  // The maximum value (th
 array.reduce((acc, i) => i < acc ? i : acc, array[0]);  // The minimum value
 ```
 
+## Sort
 **.sort()** sorts an array.
 If you are sorting **numeric values** you need to specify a function for how they will be ordered.
 Nb. sort() works by iteratively comparing pairs of values (a,b) and moving them depending on the whether the differenc is +/-:
@@ -244,11 +256,22 @@ json_output = slice_by(json_input, "id")
 ```
 
 
+# String methods and Regex
+String objects have various built-in **methods** that can be used to manipulate text.
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String
+```js
+textstring = "Humpty Dumpty sat on the wall."
+
+textstring.trim()
+textstring.substr(0,6)
+textstring.replace('wall', 'fence')
+textstring.toLowerCase()
+textstring.split(" ")
+textstring.trim()
+```
 
 
-
-
-## A Datatable in JS
+# A Datatable in JS
 The **DataTables** library depends on JQuery so that it can be interactive (sortable/searchable/pagination..). 
 
 ```html
@@ -289,7 +312,7 @@ $(#table_id).DataTable().draw();  // Instruction to draw the table
 $(#table_id).DataTable().clear().rows.add(...).draw();  // All methods chained together
 ```
 
-## Plotly Bar in JS
+# Plotly Bar in JS
 ```html
 <div id="plotly_bar_id" style="width:627px;></div>
 ```
